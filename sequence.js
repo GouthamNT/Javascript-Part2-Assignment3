@@ -58,6 +58,7 @@ function findMaxSequence() {
                 if(max < count) {
                     max = count;
                     max_index = i+1;
+                    flag = 1;
                 }
             } else {
                 count = 0;
@@ -65,11 +66,19 @@ function findMaxSequence() {
         }
     }
     numbers = document.querySelectorAll('#text');
-    for(i = max_index-max;i <= max_index ; i++) {
-        final[j] = numbers[i].value;
-        j++;
+    if(max == 0) {
+        para = document.createElement('p');
+        para.setAttribute('id','maxsequence');
+        para.textContent = "No Sequence";
+        result.appendChild(para);
+    } else {
+        for(i = max_index-max;i <= max_index ; i++) {
+            final[j] = numbers[i].value;
+            j++;
+        }
     }
-    if(flag != 0) {
+    
+    if(flag == 1) {
         if(para == null) {
             para = document.createElement('p');
             para.setAttribute('id','maxsequence');
@@ -82,7 +91,7 @@ function findMaxSequence() {
             newpara.textContent = "Max sequence is "+ final;
             result.replaceChild(newpara,para);
         }
-    } else {
+    } else if(flag == 0) {
         if(para == null) {
             para = document.createElement('p');
             para.setAttribute('id','maxsequence');
